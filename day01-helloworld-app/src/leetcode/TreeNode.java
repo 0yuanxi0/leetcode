@@ -22,24 +22,22 @@ public class TreeNode {
 
     public static TreeNode buildTree(Integer[] array) {
         if (array == null || array.length == 0) return null;
-        TreeNode root = new TreeNode(array[0]);
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        TreeNode root = new TreeNode(array[0]);
+        queue.offer(root);
         int i = 1;
-        while (!queue.isEmpty() && i<array.length) {
+        while (i < array.length && !queue.isEmpty()) {
             TreeNode node = queue.poll();
-            //左子节点
-            if(i < array.length && array[i] != null)
-            {
-                node.left = new TreeNode(array[i]);
-                queue.add(node.left);
+            if (i < array.length && array[i] != null) {
+                TreeNode left = new TreeNode(array[i]);
+                queue.offer(left);
+                node.left = left;
             }
             i++;
-            //右子节点
-            if(i < array.length && array[i] != null)
-            {
-                node.right = new TreeNode(array[i]);
-                queue.add(node.right);
+            if (i < array.length && array[i] != null) {
+                TreeNode right = new TreeNode(array[i]);
+                queue.offer(right);
+                node.right = right;
             }
             i++;
         }
