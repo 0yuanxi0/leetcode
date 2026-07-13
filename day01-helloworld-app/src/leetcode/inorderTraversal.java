@@ -13,10 +13,11 @@ public class inorderTraversal {
 
     public static List<Integer> Solution2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode cur = root;
-        while (cur != null || !stack.isEmpty()) {
-            while (cur != null) {
+        while(cur != null || !stack.isEmpty()) {
+            while(cur != null)
+            {
                 stack.push(cur);
                 cur = cur.left;
             }
@@ -26,7 +27,6 @@ public class inorderTraversal {
         }
         return list;
     }
-
     public static List<Integer> Solution1(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         if (root != null) {
@@ -39,16 +39,16 @@ public class inorderTraversal {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        Integer[] array = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            String next = sc.next();
-            if ("null".equals(next)) {
-                array[i] = null;
-            } else {
-                array[i] = Integer.parseInt(next);
-            }
-        }
+        int n = 4;
+        Integer[] array = new Integer[]{1,null,2,3};
+//        for (int i = 0; i < n; i++) {
+//            String next = sc.next();
+//            if ("null".equals(next)) {
+//                array[i] = null;
+//            } else {
+//                array[i] = Integer.parseInt(next);
+//            }
+//        }
         TreeNode root = TreeNode.buildTree(array);
         System.out.println(Solution2(root));
         sc.close();
