@@ -22,7 +22,7 @@ public class TreeNode {
 
     public static TreeNode buildTree(Integer[] array) {
         if (array == null || array.length == 0) return null;
-        Queue<TreeNode> queue = new LinkedList<>();
+        Deque<TreeNode> queue = new ArrayDeque<>();
         TreeNode root = new TreeNode(array[0]);
         queue.offer(root);
         int i = 1;
@@ -42,5 +42,29 @@ public class TreeNode {
             i++;
         }
         return root;
+    }
+
+    public static void printTree(TreeNode root) {
+        if (root == null) {
+            System.out.println("[]");
+            return;
+        }
+        List<Integer> list = new ArrayList<>();
+        Deque<TreeNode> nodeDeque = new LinkedList<>();
+        nodeDeque.offer(root);
+        while (!nodeDeque.isEmpty()) {
+            TreeNode cur = nodeDeque.poll();
+            if (cur == null) {
+                list.add(null);
+            } else {
+                list.add(cur.val);
+                nodeDeque.offer(cur.left);
+                nodeDeque.offer(cur.right);
+            }
+        }
+        while (!list.isEmpty() && list.getLast() == null) {
+            list.removeLast();
+        }
+        System.out.println(list);
     }
 }
